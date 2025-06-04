@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hilflosenentschädigung ­Rechner (AHV)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="calculator">
+    <h1>Hilflosen­entschädigung Rechner</h1>
+
+    <form id="heForm" novalidate>
+      <fieldset>
+        <legend>Allgemeine Voraussetzungen</legend>
+
+        <label>
+          <input type="checkbox" id="resident">
+          Ich lebe <strong>mind. 6&nbsp;Monate</strong> in der Schweiz.
+        </label>
+
+        <label>
+          <input type="checkbox" id="ahvRenter">
+          Ich beziehe eine <strong>AHV‑Altersrente</strong> oder Ergänzungsleistungen.
+        </label>
+
+        <label>
+          <input type="checkbox" id="needHelp">
+          Ich benötige <strong>mind. 6&nbsp;Monate</strong> Hilfe im Alltag.
+        </label>
+
+        <label>
+          <input type="checkbox" id="noOtherIns">
+          Ich erhalte <strong>keine</strong> Hilflosenentschädigung der UV/MV.
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Wohnsituation</legend>
+        <label><input type="radio" name="living" value="home"> Zuhause</label>
+        <label><input type="radio" name="living" value="institution"> Heim / Klinik</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Schweregrad</legend>
+        <label><input type="radio" name="grade" value="light"> leicht</label>
+        <label><input type="radio" name="grade" value="medium"> mittel</label>
+        <label><input type="radio" name="grade" value="severe"> schwer</label>
+      </fieldset>
+
+      <button type="submit">Berechnen</button>
+    </form>
+
+    <output id="result" role="status" aria-live="polite"></output>
+
+    <p class="disclaimer">
+      <small>
+        *Stand Beträge: 1. Januar 2025. Ergebnis ohne Gewähr.<br>
+        Für eine verbindliche Prüfung wenden Sie sich an Ihre Ausgleichskasse.
+      </small>
+    </p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
