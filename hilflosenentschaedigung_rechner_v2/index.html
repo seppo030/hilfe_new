@@ -1,67 +1,84 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hilflosenentschädigung ­Rechner (AHV)</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hilflosenentschädigung – Anspruchscheck</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:,">
 </head>
 <body>
-  <main class="calculator">
-    <h1>Hilflosen­entschädigung Rechner</h1>
+  <main id="app">
+    <header>
+      <h1>Anspruchs­check Hilflosen­entschädigung (AHV)</h1>
+      <div id="progress">
+        <div id="bar"></div>
+      </div>
+    </header>
 
-    <form id="heForm" novalidate>
-      <fieldset>
-        <legend>Allgemeine Voraussetzungen</legend>
+    <section class="step" data-step="0">
+      <h2>Wohnsitz</h2>
+      <p>Lebst du seit mindestens&nbsp;6&nbsp;Monaten dauerhaft in der Schweiz?</p>
+      <div class="options">
+        <button data-q="resident" data-v="yes">Ja</button>
+        <button data-q="resident" data-v="no">Nein</button>
+      </div>
+    </section>
 
-        <label>
-          <input type="checkbox" id="resident">
-          Ich lebe <strong>mind. 6&nbsp;Monate</strong> in der Schweiz.
-        </label>
+    <section class="step" data-step="1">
+      <h2>AHV‑Rente</h2>
+      <p>Beziehst du eine AHV‑Altersrente&nbsp;oder Ergänzungsleistungen?</p>
+      <div class="options">
+        <button data-q="ahv" data-v="yes">Ja</button>
+        <button data-q="ahv" data-v="no">Nein</button>
+      </div>
+    </section>
 
-        <label>
-          <input type="checkbox" id="ahvRenter">
-          Ich beziehe eine <strong>AHV‑Altersrente</strong> oder Ergänzungsleistungen.
-        </label>
+    <section class="step" data-step="2">
+      <h2>Dauer der Hilflosigkeit</h2>
+      <p>Benötigst du seit mindestens&nbsp;6&nbsp;Monaten regelmässig Hilfe im Alltag?</p>
+      <div class="options">
+        <button data-q="help" data-v="yes">Ja</button>
+        <button data-q="help" data-v="no">Nein</button>
+      </div>
+    </section>
 
-        <label>
-          <input type="checkbox" id="needHelp">
-          Ich benötige <strong>mind. 6&nbsp;Monate</strong> Hilfe im Alltag.
-        </label>
+    <section class="step" data-step="3">
+      <h2>Andere Leistungen</h2>
+      <p>Erhältst du bereits eine Hilflosen­entschädigung der Unfall‑ oder Militärversicherung?</p>
+      <div class="options">
+        <button data-q="otherIns" data-v="no">Nein</button>
+        <button data-q="otherIns" data-v="yes">Ja</button>
+      </div>
+    </section>
 
-        <label>
-          <input type="checkbox" id="noOtherIns">
-          Ich erhalte <strong>keine</strong> Hilflosenentschädigung der UV/MV.
-        </label>
-      </fieldset>
+    <section class="step" data-step="4">
+      <h2>Wohnsituation</h2>
+      <p>Wo wohnst du aktuell?</p>
+      <div class="options">
+        <button data-q="living" data-v="home">Zuhause</button>
+        <button data-q="living" data-v="institution">Heim / Klinik</button>
+      </div>
+    </section>
 
-      <fieldset>
-        <legend>Wohnsituation</legend>
-        <label><input type="radio" name="living" value="home"> Zuhause</label>
-        <label><input type="radio" name="living" value="institution"> Heim / Klinik</label>
-      </fieldset>
+    <section class="step" data-step="5">
+      <h2>Schweregrad der Hilflosigkeit</h2>
+      <p>Wie wird deine Hilflosigkeit eingestuft?</p>
+      <div class="options">
+        <button data-q="grade" data-v="light">leicht</button>
+        <button data-q="grade" data-v="medium">mittel</button>
+        <button data-q="grade" data-v="severe">schwer</button>
+      </div>
+    </section>
 
-      <fieldset>
-        <legend>Schweregrad</legend>
-        <label><input type="radio" name="grade" value="light"> leicht</label>
-        <label><input type="radio" name="grade" value="medium"> mittel</label>
-        <label><input type="radio" name="grade" value="severe"> schwer</label>
-      </fieldset>
-
-      <button type="submit">Berechnen</button>
-    </form>
-
-    <output id="result" role="status" aria-live="polite"></output>
-
-    <p class="disclaimer">
-      <small>
-        *Stand Beträge: 1. Januar 2025. Ergebnis ohne Gewähr.<br>
-        Für eine verbindliche Prüfung wenden Sie sich an Ihre Ausgleichskasse.
-      </small>
-    </p>
+    <section class="step" data-step="6" id="resultScreen">
+      <h2>Dein Ergebnis</h2>
+      <div id="result"></div>
+      <button id="restart">Neu starten</button>
+    </section>
   </main>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

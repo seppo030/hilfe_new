@@ -3,57 +3,85 @@
 body{
   margin:0;
   font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  background:#f5f5f5;
+  background:#eef2f7;
+  display:flex;
+  min-height:100vh;
+  justify-content:center;
+  align-items:center;
   padding:1rem;
 }
-.calculator{
-  max-width:640px;
-  margin:0 auto;
+#app{
   background:#fff;
-  border-radius:12px;
-  padding:2rem 1.5rem;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  border-radius:16px;
+  width:100%;
+  max-width:540px;
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+  overflow:hidden;
+}
+header{
+  padding:1.25rem 1.5rem 0;
 }
 h1{
-  margin-top:0;
+  margin:0 0 1rem;
+  font-size:1.3rem;
   text-align:center;
-  font-size:1.5rem;
 }
-fieldset{
-  border:1px solid #ddd;
-  border-radius:8px;
-  margin:1rem 0;
-  padding:1rem;
+#progress{
+  width:100%;
+  height:6px;
+  background:#e5e5e5;
+  border-radius:3px;
+  overflow:hidden;
 }
-legend{
-  font-weight:600;
-  padding:0 .5rem;
+#bar{
+  height:100%;
+  width:0%;
+  background:#0073aa;
+  transition:width .3s;
 }
-label{
-  display:block;
-  margin:.35rem 0;
-  cursor:pointer;
+.step{
+  display:none;
+  padding:2rem 1.5rem 3rem;
+  text-align:center;
+}
+.step.active{display:block}
+h2{
+  margin-top:0;
+  font-size:1.2rem;
+}
+.options{
+  margin-top:1.5rem;
+  display:flex;
+  flex-direction:column;
+  gap:0.75rem;
 }
 button{
-  width:100%;
-  padding:.8rem;
-  border:none;
-  border-radius:8px;
+  padding:0.9rem 1.2rem;
   font-size:1rem;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
   background:#0073aa;
   color:#fff;
-  cursor:pointer;
   transition:background .2s;
 }
 button:hover{background:#005f8c}
-#result{
-  margin-top:1.25rem;
-  font-size:1.1rem;
-  font-weight:600;
+button[data-v="no"],
+button[data-q="otherIns"][data-v="yes"]{
+  background:#b91c1c;
 }
-.disclaimer{
+button[data-v="no"]:hover,
+button[data-q="otherIns"][data-v="yes"]:hover{
+  background:#991b1b;
+}
+#resultScreen button{
   margin-top:2rem;
-  color:#555;
-  font-size:.85rem;
-  text-align:center;
+  width:100%;
 }
+#result{
+  font-size:1.05rem;
+  line-height:1.4;
+  text-align:left;
+}
+#result .ok{color:#006400;font-weight:600}
+#result .fail{color:#b91c1c;font-weight:600}
